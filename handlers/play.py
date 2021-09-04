@@ -76,13 +76,13 @@ async def generate_cover(requested_by, title, views, duration, thumbnail):
     img = Image.open("temp.png")
     draw = ImageDraw.Draw(img)
     font = ImageFont.truetype("etc/font.otf", 32)
-    draw.text((190, 550), f"Title: {title}", (255, 255, 255), font=font)
-    draw.text(
-        (190, 590), f"Duration: {duration}", (255, 255, 255), font=font
-    )
-    draw.text((190, 630), f"Views: {views}", (255, 255, 255), font=font)
+    draw.text((190, 630), f"{title}", (255, 255, 255), font=font)
+#    draw.text(
+#        (190, 590), f"Duration: {duration}", (255, 255, 255), font=font
+#    )
+#    draw.text((190, 630), f"Views: {views}", (255, 255, 255), font=font)
     draw.text((190, 670),
-        f"Added By: {requested_by}",
+        f"Bởi: {requested_by}",
         (255, 255, 255),
         font=font,
     )
@@ -97,7 +97,7 @@ async def generate_cover(requested_by, title, views, duration, thumbnail):
 @errors
 async def play(_, message: Message):
 
-    lel = await message.reply("🔄 **Processing** @SDBOTsZ")
+    lel = await message.reply("🔄 Đang tìm kiếm bài hát")
     sender_id = message.from_user.id
     sender_name = message.from_user.first_name
 
@@ -105,8 +105,8 @@ async def play(_, message: Message):
             [
                 [
                     InlineKeyboardButton(
-                        text="Owner",
-                        url="https://t.me/Darkridersslk")
+                        text="Báo lỗi",
+                        url="https://t.me/owogram")
                    
                 ]
             ]
@@ -131,8 +131,8 @@ async def play(_, message: Message):
                 [
                     [
                         InlineKeyboardButton(
-                            text="Channel",
-                            url=f"https://t.me/SDBOTs_inifinity")
+                            text="Báo lỗi",
+                            url=f"https://t.me/owogram")
 
                     ]
                 ]
