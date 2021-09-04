@@ -1,7 +1,7 @@
 from pyrogram import Client, filters
 from pyrogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton
 
-from config import BOT_NAME as bn
+from config import BOT_NAME as bn, BOT_USERNAME
 from helpers.filters import other_filters2
 
 
@@ -11,30 +11,17 @@ async def start(_, message: Message):
     await message.reply_text(
         f"""**Hey, I'm {bn} 🎵
 
-I can play music in your group's voice call. Developed by [Sadew](https://t.me/Darkridersslk).
+I can play music in your group's voice call.
 
 Add me to your group and play music freely!**
         """,
         reply_markup=InlineKeyboardMarkup(
             [
-                [
+               [ 
                     InlineKeyboardButton(
-                        "🛠 Source Code 🛠", url="https://github.com/Sadew451/SD-GroupMusicBot")
-                  ],[
-                    InlineKeyboardButton(
-                        "💬 Group", url="https://t.me/SDBOTz"
-                    ),
-                    InlineKeyboardButton(
-                        "🔊 Channel", url="https://t.me/SDBOTs_inifinity"
-                    )
-                ],[ 
-                    InlineKeyboardButton(
-                        "➕ Add To Your Group ➕", url="https://t.me/SDStreamMusicBot?startgroup=true"
+                        "➕ Add To Your Group ➕", url="https://t.me/{BOT_USERNAME}?startgroup=true"
                         
-                     ),
-                    InlineKeyboardButton(
-                         "𝗢𝘄𝗻𝗲𝗿", url="https://t.me/Darkridersslk"
-                    )   
+                     )
                 ]    
             ]
         ),
@@ -48,7 +35,7 @@ async def gstart(_, message: Message):
             [
                 [
                     InlineKeyboardButton(
-                        "🔊 Channel", url="https://t.me/SDBOTs_inifinity")
+                        "🔊 Channel", url="https://t.me/owogram")
                 ]
             ]
         )
