@@ -118,7 +118,7 @@ async def play(_, message: Message):
     if audio:
         if round(audio.duration / 60) > DURATION_LIMIT:
             raise DurationLimitError(
-                f"❌ Videos longer than {DURATION_LIMIT} minute(s) aren't allowed to play!"
+                f"❌ Video dài hơn {DURATION_LIMIT} phút không được phép chơi!"
             )
 
         file_name = get_file_name(audio)
@@ -126,7 +126,7 @@ async def play(_, message: Message):
         thumb_name = "https://telegra.ph/file/c5aec68fe0eeeecc66964.jpg"
         thumbnail = thumb_name
         duration = round(audio.duration / 60)
-        views = "Locally added"
+        views = "Đã thêm cục bộ"
         keyboard = InlineKeyboardMarkup(
                 [
                     [
@@ -175,7 +175,7 @@ async def play(_, message: Message):
                     [
                         [
                             InlineKeyboardButton(
-                                text="Watch On YouTube",
+                                text="Xem trên YouTube",
                                 url=f"https://youtube.com")
 
                         ]
@@ -185,7 +185,7 @@ async def play(_, message: Message):
         await generate_cover(requested_by, title, views, duration, thumbnail)     
         file_path = await converter.convert(youtube.download(url))
     else:
-        await lel.edit("🔎 **Finding** Your song...")
+        await lel.edit("🔎 **Đang tìm** bài hát của bạn ...")
         sender_id = message.from_user.id
         user_id = message.from_user.id
         sender_name = message.from_user.first_name
@@ -196,7 +196,7 @@ async def play(_, message: Message):
         for i in message.command[1:]:
             query += ' ' + str(i)
         print(query)
-        await lel.edit("🎵 **Processing**")
+        await lel.edit("🎵 **Xử lý**")
         ydl_opts = {"format": "bestaudio[ext=m4a]"}
         try:
             results = YoutubeSearch(query, max_results=1).to_dict()
@@ -213,7 +213,7 @@ async def play(_, message: Message):
 
         except Exception as e:
             lel.edit(
-                "❌ Song not found.\n\nTry another song or maybe spell it properly."
+                "❌ Bài hát không được tìm thấy.\n\nHãy thử một bài hát khác hoặc có thể viết đúng chính tả."
             )
             print(str(e))
             return
@@ -222,7 +222,7 @@ async def play(_, message: Message):
                 [
                     [
                         InlineKeyboardButton(
-                            text="Watch On YouTube",
+                            text="Xem trên YouTube",
                             url=f"{url}")
 
                     ]
@@ -236,7 +236,7 @@ async def play(_, message: Message):
         position = await queues.put(message.chat.id, file=file_path)
         await message.reply_photo(
         photo="final.png", 
-        caption=f"#⃣ Your requested song **queued** at position {position}!",
+        caption=f"#⃣ Bài hát yêu cầu của bạn **đã xếp hàng** ở vị trí {position}!",
         reply_markup=keyboard)
         os.remove("final.png")
         return await lel.delete()
@@ -245,7 +245,7 @@ async def play(_, message: Message):
         await message.reply_photo(
         photo="final.png",
         reply_markup=keyboard,
-        caption="▶️ **Playing** here the song requested by {} via YouTube 🎵".format(
+        caption="▶️ **Đang chơi** ở đây bài hát được yêu cầu bởi {} 🎵".format(
         message.from_user.mention()
         ),
     )
